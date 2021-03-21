@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from "react"
+import './App.css'
+import SignUp from './views/SignUp'
+import SignIn from './views/SignIn';
+import Dashboard from "./views/Dashboard";
 
 function App() {
+  const [navigation,setNevigation] = useState('signup')
+  const navigate = (routeName) =>{
+    setNevigation(routeName)
+  }
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {navigation === 'signup' && <SignUp navigate={navigate}/>}
+      {navigation === 'signin' && <SignIn navigate={navigate}/>}
+      {navigation === 'dashboard' && <Dashboard navigate={navigate}/>}
     </div>
   );
 }
